@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Photo Organizer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="brand">
+        <h1>Wedding Photo Organizer</h1>
+        <p>Organize by event, instantly.</p>
+      </div>
+
+      <div class="toolbar">
+        <label class="upload-btn" for="fileInput">Upload Photos</label>
+        <input id="fileInput" type="file" accept="image/*" multiple hidden />
+
+        <form id="driveForm" class="drive-form">
+          <input
+            id="driveLinks"
+            type="text"
+            placeholder="Paste Google Drive / image links (comma or newline separated)"
+            aria-label="Paste image links"
+          />
+          <button type="submit">Add Links</button>
+        </form>
+      </div>
+
+      <div class="controls-row">
+        <div id="categoryFilters" class="chips" aria-label="Category filters"></div>
+
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Search by file name or category"
+          aria-label="Search images"
+        />
+      </div>
+
+      <div class="selection-bar">
+        <span id="selectionCount">0 selected</span>
+        <select id="assignCategory">
+          <option value="">Assign category...</option>
+        </select>
+        <button id="assignBtn" type="button">Assign</button>
+        <button id="clearSelectionBtn" type="button" class="ghost">Clear Selection</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="gallery" class="gallery" aria-live="polite"></section>
+      <div id="sentinel" class="sentinel"></div>
+      <p id="emptyState" class="empty-state hidden">No images found for the current filter.</p>
+    </main>
+
+    <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <button id="lightboxClose" class="lightbox-close" aria-label="Close">×</button>
+      <button id="lightboxPrev" class="lightbox-nav prev" aria-label="Previous image">❮</button>
+      <img id="lightboxImage" alt="" />
+      <button id="lightboxNext" class="lightbox-nav next" aria-label="Next image">❯</button>
+      <div id="lightboxMeta" class="lightbox-meta"></div>
+    </div>
+
+    <template id="imageCardTemplate">
+      <article class="card" draggable="true">
+        <div class="card-inner">
+          <img loading="lazy" decoding="async" alt="Wedding photo" />
+          <button class="select-toggle" title="Select image" aria-label="Select image">✓</button>
+          <span class="category-pill"></span>
+        </div>
+        <div class="card-footer">
+          <p class="name" title=""></p>
+        </div>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
